@@ -1,0 +1,92 @@
+/* ═══════════════════════════════════════════════
+   SHAJRA APP — Global Styles
+   ═══════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;600;700&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap');
+
+:root {
+  --gold:         #c8a032;
+  --gold-light:   #e8cc70;
+  --gold-pale:    #f5e9b8;
+  --gold-dim:     rgba(200, 160, 50, 0.35);
+
+  --page-bg:      #0d1f0d;
+  --panel-dark:   #1a3a1a;
+  --panel-mid:    #152e15;
+  --panel-deep:   #0a1e0a;
+  --border-green: #2e5a2e;
+
+  --cream:        #fdf7e8;
+  --cream-dark:   #f0ead8;
+  --cream-mid:    #f8f5e8;
+  --ink:          #1a1008;
+
+  --samad:        #cc2222;
+  --ahmad:        #a08000;
+  --hassan:       #1640a0;
+  --khwaja:       #186018;
+
+  --font-serif:   'Cinzel', 'Georgia', serif;
+  --font-arabic:  'Amiri', 'Georgia', serif;
+  --font-urdu:    'Noto Nastaliq Urdu', 'Amiri', serif;
+
+  --radius-sm:    6px;
+  --radius-md:    12px;
+  --radius-lg:    16px;
+  --shadow-sm:    0 2px 6px rgba(0, 0, 0, 0.12);
+  --shadow-md:    0 4px 16px rgba(0, 0, 0, 0.22);
+  --shadow-lg:    0 8px 32px rgba(0, 0, 0, 0.40);
+  --transition:   0.18s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--page-bg);
+  font-family: var(--font-serif);
+  height: 100vh;
+  overflow: hidden;
+  padding: 0;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  font-family: var(--font-serif);
+  cursor: pointer;
+}
+
+input, select, textarea {
+  font-family: var(--font-serif);
+}
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.2); border-radius: 4px; }
+::-webkit-scrollbar-thumb { background: #3a6a2a; border-radius: 4px; }
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes savedFlash {
+  0%   { opacity: 0; transform: scale(0.9); }
+  20%  { opacity: 1; transform: scale(1); }
+  80%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  body { height: 100vh; }
+}
+
+/* Print */
+@media print {
+  body { background: white !important; padding: 0; }
+}

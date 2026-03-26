@@ -1,0 +1,183 @@
+.sidebar {
+  flex-shrink: 0;
+  width: 134px;
+  background: linear-gradient(180deg, var(--panel-mid), var(--panel-deep));
+  border: 2px solid var(--gold);
+  border-right: 1px solid rgba(200, 160, 50, 0.22);
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+  position: relative;
+  align-self: stretch;
+  z-index: 10;
+  overflow: visible;
+}
+
+.header {
+  background: rgba(200, 160, 50, 0.14);
+  border-bottom: 2px solid rgba(200, 160, 50, 0.4);
+  padding: 14px 8px 11px;
+  text-align: center;
+  border-radius: var(--radius-lg) 0 0 0;
+}
+
+.headerUr {
+  font-family: var(--font-urdu);
+  font-size: 16px;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.headerEn {
+  font-family: var(--font-serif);
+  font-size: 8px;
+  letter-spacing: 3px;
+  color: rgba(200, 160, 50, 0.55);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* Wraps all the absolutely-positioned labels */
+.labelsContainer {
+  position: relative;
+  width: 100%;
+}
+
+/* Vertical spine */
+.spine {
+  position: absolute;
+  left: 14px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    rgba(200, 160, 50, 0.45),
+    rgba(200, 160, 50, 0.04)
+  );
+  pointer-events: none;
+}
+
+/* Each nasl label — positioned absolutely */
+.label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  padding: 7px 7px 7px 0;
+  border-left: 4px solid;
+  margin-left: 10px;
+  margin-right: 4px;
+  border-radius: 0 8px 8px 0;
+  gap: 5px;
+  transition: top 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glowing dot on the spine */
+.dot {
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--panel-deep);
+  flex-shrink: 0;
+}
+
+.labelText {
+  flex: 1;
+  min-width: 0;
+  padding-left: 3px;
+}
+
+.labelUr {
+  font-family: var(--font-urdu);
+  font-size: 12px;
+  font-weight: 700;
+  color: #f0e8c0;
+  direction: rtl;
+  text-align: right;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.labelEn {
+  font-family: var(--font-serif);
+  font-size: 8px;
+  letter-spacing: 0.8px;
+  margin-top: 2px;
+}
+
+/* Number circle */
+.labelNum {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  margin-right: 4px;
+}
+
+.footer {
+  border-top: 1px solid rgba(200, 160, 50, 0.22);
+  padding: 9px 8px;
+  text-align: center;
+  font-family: var(--font-urdu);
+  font-size: 9px;
+  color: rgba(200, 160, 50, 0.35);
+  direction: rtl;
+  line-height: 1.8;
+}
+
+.footerDua {
+  font-size: 8px;
+  color: rgba(200, 160, 50, 0.25);
+  margin-top: 2px;
+}
+
+/* ── Responsive: compact number-only mode on mobile ── */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 36px;
+    min-height: 0;
+  }
+
+  /* Hide header text, keep the colour bar */
+  .headerUr,
+  .headerEn { display: none; }
+
+  .header {
+    padding: 8px 4px;
+  }
+
+  /* Hide spine, text, and dot — show only the number circle */
+  .spine      { display: none; }
+  .labelText  { display: none; }
+  .dot        { display: none; }
+
+  .label {
+    border-left: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 4px 0;
+    justify-content: center;
+    background: none !important;
+  }
+
+  .labelNum {
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
+    margin-right: 0;
+  }
+
+  .footer { display: none; }
+}

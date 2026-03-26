@@ -1,0 +1,310 @@
+/* ── Page wrapper — fixed full-viewport flex column ── */
+.pageWrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 12px 12px 0;
+  animation: fadeIn 0.35s ease;
+}
+
+/* ── Edit banner ── */
+.editBanner {
+  flex-shrink: 0;
+  background: rgba(200, 160, 50, 0.11);
+  border: 1px solid var(--gold);
+  border-radius: var(--radius-sm);
+  padding: 8px 18px;
+  margin-bottom: 12px;
+  color: #e8d080;
+  font-family: var(--font-serif);
+  font-size: 11px;
+  text-align: center;
+  letter-spacing: 0.4px;
+}
+
+/* ── Search result count ── */
+.searchCount {
+  flex-shrink: 0;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: 11px;
+  margin-bottom: 10px;
+  letter-spacing: 0.4px;
+}
+.searchCountFound { color: #80d880; }
+.searchCountNone  { color: #d88080; }
+
+/* ── Main layout — the only scrolling region ── */
+.mainLayout {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* ── Chart wrapper — sidebar + tree scaled as one unit ── */
+.chartWrapper {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+  min-width: 100%;      /* fill full width on large screens */
+  width: max-content;   /* grow wider than 100% when tree content demands it */
+  transform-origin: top left;
+}
+
+/* ── Tree panel ── */
+.treePanel {
+  flex: 1 0 auto;         /* grow to fill space, never shrink below content size */
+  min-width: max-content; /* always as wide as the widest tree row */
+  background: var(--cream-mid);
+  border: 2px solid var(--gold);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  padding: 44px 80px 24px 50px;
+  overflow: visible;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+/* Subtle geometric background */
+.treePanel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      rgba(200, 160, 50, 0.022) 20px,
+      rgba(200, 160, 50, 0.022) 21px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 20px,
+      rgba(200, 160, 50, 0.022) 20px,
+      rgba(200, 160, 50, 0.022) 21px
+    );
+  pointer-events: none;
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+
+.treeInner {
+  position: relative;
+  min-width: max-content;
+  margin: 0;
+  padding: 16px 60px 40px 16px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Footer — pinned at bottom, never scrolls ── */
+.footer {
+  flex-shrink: 0;
+  text-align: center;
+  padding: 8px 0 10px;
+  font-family: var(--font-serif);
+  font-size: 10.5px;
+  color: #4a7a3a;
+  line-height: 2;
+  letter-spacing: 0.4px;
+}
+.footerDua {
+  font-family: var(--font-arabic);
+  font-size: 14px;
+  color: #6a9a5a;
+  direction: rtl;
+  margin-bottom: 2px;
+}
+
+/* ── Loading screen ── */
+.loading {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+}
+.loadingSpinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(200, 160, 50, 0.2);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+.loadingText {
+  font-family: var(--font-urdu);
+  font-size: 18px;
+  color: var(--gold);
+  direction: rtl;
+  letter-spacing: 2px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .pageWrapper {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .treePanel {
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    padding: 28px 40px 40px 28px;
+  }
+
+  .treeInner {
+    padding: 12px 40px 30px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageWrapper {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+  .treePanel {
+    padding: 20px 32px 32px 20px;
+  }
+
+  .treeInner {
+    padding: 8px 32px 24px 8px;
+  }
+}
+
+/* ── Floating chart controls (bottom-right of flow box) ── */
+.chartControls {
+  position: fixed;
+  bottom: 56px;
+  right: 22px;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(160deg, var(--panel-dark), var(--panel-deep));
+  border: 1.5px solid var(--gold-dim);
+  border-radius: 14px;
+  padding: 10px 8px;
+  box-shadow: var(--shadow-lg);
+}
+
+.ctrlBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold-dim);
+  background: rgba(200, 160, 50, 0.08);
+  color: var(--gold);
+  font-size: 17px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--transition), transform 0.15s, border-color var(--transition);
+  padding: 0;
+}
+.ctrlBtn:hover:not(:disabled) {
+  background: rgba(200, 160, 50, 0.22);
+  border-color: var(--gold);
+  transform: scale(1.12);
+}
+.ctrlBtn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.ctrlSep {
+  width: 20px;
+  height: 1.5px;
+  background: var(--gold-dim);
+  border-radius: 1px;
+}
+
+.ctrlLabel {
+  font-family: var(--font-serif);
+  font-size: 8.5px;
+  color: rgba(200, 160, 50, 0.55);
+  letter-spacing: 0.5px;
+  user-select: none;
+}
+
+/* ── Creator credit row ── */
+.creatorRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  margin-bottom: 6px;
+  padding: 0 10px;
+}
+
+.creatorLine {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(200,160,50,0.5), transparent);
+}
+
+.creatorBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #1a3a1a, #0f2a0f);
+  border: 1.5px solid #c8a032;
+  border-radius: 10px;
+  padding: 8px 18px;
+  white-space: nowrap;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  flex-shrink: 0;
+}
+
+.creatorLabel {
+  font-family: var(--font-urdu);
+  font-size: 10px;
+  color: rgba(200,160,50,0.65);
+  direction: rtl;
+  letter-spacing: 0.5px;
+}
+
+.creatorDivider {
+  color: rgba(200,160,50,0.4);
+  font-size: 10px;
+}
+
+.creatorName {
+  font-family: var(--font-serif);
+  font-size: 11px;
+  font-weight: 700;
+  color: #e8cc70;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.creatorNameUr {
+  font-family: var(--font-urdu);
+  font-size: 11px;
+  color: rgba(200,160,50,0.75);
+  direction: rtl;
+  border-left: 1px solid rgba(200,160,50,0.3);
+  padding-left: 10px;
+  margin-left: 2px;
+}
+
+/* ── Print ── */
+@media print {
+  .editBanner,
+  .searchCount { display: none; }
+  .pageWrapper { height: auto; overflow: visible; }
+  .mainLayout  { overflow: visible; }
+  .chartWrapper { transform: none !important; width: 100%; }
+  .treePanel   { border-radius: var(--radius-lg); box-shadow: none; overflow: visible; }
+}

@@ -1,0 +1,50 @@
+.nodeWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.childrenSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Vertical stem from parent card down to h-bar */
+.stemLine {
+  width: 2px;
+  flex-shrink: 0;
+}
+
+/* Row of children */
+.childrenRow {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* Each child column */
+.childCol {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 8px;
+  position: relative;
+  min-width: max-content;
+}
+
+/* Horizontal bar across siblings — drawn as absolute div inside childCol */
+.hBar {
+  position: absolute;
+  top: 0;
+  height: 2px;
+}
+
+/* Vertical drop line from h-bar to child card */
+.dropLine {
+  width: 2px;
+  height: 22px;
+  flex-shrink: 0;
+}
