@@ -198,24 +198,35 @@ export function usePanZoom() {
   // ── Zoom + pan to center a DOM element at a minimum readable scale ──
   const zoomAndPanToNode = useCallback((el, targetScale = 0.72) => {
     const container = containerRef.current
-    if (!container || !el) return
-    const cRect = container.getBoundingClientRect()
+    const wrapper   = wrapperRef.current
+    if (!container || !wrapper || !el) return
+
+    // Read current scale directly from the wrapper's inline style transform
+    // (avoids stale-closure issues with state-updater functions)
+    const m = (wrapper.style.transform || '').match(/scale\(([^)]+)\)/)
+    const currentScale = m ? parseFloat(m[1]) : 1
+    if (!(currentScale > 0)) return
+
+    // Only zoom IN — never zoom out
+    const newScale = Math.max(currentScale, targetScale)
+
+    // Unscaled center of the element inside the panWrapper.
+    // wrapper.getBoundingClientRect() already accounts for the current
+    // translate+scale transform, so dividing the screen-space delta by
+    // currentScale converts back to unscaled panWrapper coordinates.
+    const wRect = wrapper.getBoundingClientRect()
     const eRect = el.getBoundingClientRect()
-    const elCenterX = eRect.left - cRect.left + eRect.width  / 2
-    const elCenterY = eRect.top  - cRect.top  + eRect.height / 2
-    setScale(prev => {
-      const newScale = Math.max(prev, targetScale)
-      setOffset(o => {
-        // Unscaled position of element center within the panWrapper
-        const px = (elCenterX - o.x) / prev
-        const py = (elCenterY - o.y) / prev
-        return {
-          x: cRect.width  / 2 - px * newScale,
-          y: cRect.height / 2 - py * newScale,
-        }
-      })
-      return newScale
-    })
+    if (!eRect.width && !eRect.height) return  // element not in the DOM yet
+
+    const px = (eRect.left + eRect.width  / 2 - wRect.left) / currentScale
+    const py = (eRect.top  + eRect.height / 2 - wRect.top)  / currentScale
+
+    const cW = container.clientWidth
+    const cH = container.clientHeight
+
+    // Apply both updates in the same React batch
+    setScale(newScale)
+    setOffset({ x: cW / 2 - px * newScale, y: cH / 2 - py * newScale })
   }, [])
 
   return {
