@@ -1462,8 +1462,8 @@
                                       "children": [
                                         {
                                           "id": "n1072_i9q",
-                                          "name": "hAZRAT MIAN NAJAM SAHEN",
-                                          "nameAr": "حضرت میاں نجم SAHEN",
+                                          "name": "hAZRAT MIAN NAJAM SAHEb",
+                                          "nameAr": "صاحبزادہ میاں محمد نجم صاحب",
                                           "notes": "",
                                           "nasl": 11,
                                           "branch": "ahmad",
@@ -2972,7 +2972,18 @@
                               "nasl": 8,
                               "branch": "ahmad",
                               "ra": true,
-                              "children": []
+                              "children": [
+                                {
+                                  "id": "n1010_e8a",
+                                  "name": "sAHIBZADA sAMEEH iRSHAD SAHIB",
+                                  "nameAr": "",
+                                  "notes": "",
+                                  "nasl": 9,
+                                  "branch": "ahmad",
+                                  "ra": true,
+                                  "children": []
+                                }
+                              ]
                             },
                             {
                               "id": "n1014_cd7",
@@ -3013,7 +3024,18 @@
                               "nasl": 8,
                               "branch": "ahmad",
                               "ra": true,
-                              "children": []
+                              "children": [
+                                {
+                                  "id": "n1005_0ur",
+                                  "name": "sAHIBZADA hASEEB AKBAR SAHIB",
+                                  "nameAr": "",
+                                  "notes": "",
+                                  "nasl": 9,
+                                  "branch": "ahmad",
+                                  "ra": true,
+                                  "children": []
+                                }
+                              ]
                             },
                             {
                               "id": "n1016_v0b",
@@ -3067,7 +3089,7 @@
                                 },
                                 {
                                   "id": "n1024_xnj",
-                                  "name": "Mian ****",
+                                  "name": "Mian Hamza hamid saheb",
                                   "nameAr": "میاں",
                                   "notes": "",
                                   "nasl": 9,
@@ -3077,7 +3099,7 @@
                                 },
                                 {
                                   "id": "n1025_3a9",
-                                  "name": "Mian ****",
+                                  "name": "Mian tALHA hAMID SAHIB",
                                   "nameAr": "میاں",
                                   "notes": "",
                                   "nasl": 9,
@@ -3106,7 +3128,48 @@
                               "nasl": 8,
                               "branch": "ahmad",
                               "ra": true,
-                              "children": []
+                              "children": [
+                                {
+                                  "id": "n1006_3dd",
+                                  "name": "sAHIBZADA mUBASHIR hASSAN SAHIB",
+                                  "nameAr": "",
+                                  "notes": "",
+                                  "nasl": 9,
+                                  "branch": "ahmad",
+                                  "ra": true,
+                                  "children": []
+                                },
+                                {
+                                  "id": "n1007_fhv",
+                                  "name": "sAHIBZADA mUHAMMAD KASHIF SAHIB",
+                                  "nameAr": "",
+                                  "notes": "",
+                                  "nasl": 9,
+                                  "branch": "ahmad",
+                                  "ra": true,
+                                  "children": []
+                                },
+                                {
+                                  "id": "n1008_qs1",
+                                  "name": "sAHIBZADA mUHAMMAD UMAR SIRAJ SAHIB",
+                                  "nameAr": "",
+                                  "notes": "",
+                                  "nasl": 9,
+                                  "branch": "ahmad",
+                                  "ra": true,
+                                  "children": []
+                                },
+                                {
+                                  "id": "n1009_pux",
+                                  "name": "sAHIBZADA rAZA sIRAJ SAHIB",
+                                  "nameAr": "",
+                                  "notes": "",
+                                  "nasl": 9,
+                                  "branch": "ahmad",
+                                  "ra": true,
+                                  "children": []
+                                }
+                              ]
                             },
                             {
                               "id": "n1027_ja5",
@@ -3276,7 +3339,28 @@
                           "nasl": 7,
                           "branch": "ahmad",
                           "ra": true,
-                          "children": []
+                          "children": [
+                            {
+                              "id": "n1001_ht6",
+                              "name": "SAhibzada Fakhar E Noor",
+                              "nameAr": "",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "ahmad",
+                              "ra": true,
+                              "children": []
+                            },
+                            {
+                              "id": "n1002_4f9",
+                              "name": "sAHIBZADA HAMZA FAISAL SAHIB",
+                              "nameAr": "",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "ahmad",
+                              "ra": true,
+                              "children": []
+                            }
+                          ]
                         },
                         {
                           "id": "n1158_c2e",
@@ -3286,7 +3370,28 @@
                           "nasl": 7,
                           "branch": "ahmad",
                           "ra": true,
-                          "children": []
+                          "children": [
+                            {
+                              "id": "n1003_nit",
+                              "name": "sAHIBZADA mUHAMMAD AHMAD",
+                              "nameAr": "",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "ahmad",
+                              "ra": true,
+                              "children": []
+                            },
+                            {
+                              "id": "n1004_0c2",
+                              "name": "SAHIBZADA hAIDAR HASSAN SAHIB",
+                              "nameAr": "",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "ahmad",
+                              "ra": true,
+                              "children": []
+                            }
+                          ]
                         }
                       ]
                     }

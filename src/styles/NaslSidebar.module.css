@@ -1,13 +1,13 @@
 .sidebar {
   flex-shrink: 0;
-  width: 134px;
-  background: linear-gradient(180deg, var(--panel-mid), var(--panel-deep));
-  border: 2px solid var(--gold);
-  border-right: 1px solid rgba(200, 160, 50, 0.22);
-  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+  width: 130px;
+  background: linear-gradient(180deg, #152e15, #0a1e0a);
+  border: 2px solid #c8a032;
+  border-right: 1px solid rgba(200,160,50,0.22);
+  border-radius: 16px 0 0 16px;
   position: relative;
   align-self: stretch;
-  z-index: 10;
+  z-index: 20;
   overflow: visible;
 }
 
@@ -143,41 +143,87 @@
   margin-top: 2px;
 }
 
-/* ── Responsive: compact number-only mode on mobile ── */
-@media (max-width: 768px) {
+/* ── Tablet ── */
+@media (max-width: 900px) {
+  .sidebar {
+    width: 90px;
+  }
+  .labelUr {
+    font-size: 10px;
+  }
+  .labelEn {
+    display: none;
+  }
+  .labelNum {
+    width: 16px;
+    height: 16px;
+    font-size: 8px;
+    margin-right: 2px;
+  }
+  .label {
+    padding: 5px 4px 5px 0;
+    gap: 3px;
+  }
+  .headerUr {
+    font-size: 12px;
+  }
+  .headerEn {
+    font-size: 7px;
+    letter-spacing: 2px;
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
   .sidebar {
     width: 36px;
-    min-height: 0;
+    min-height: unset;
+    position: sticky;
+    top: 0;
+    align-self: stretch;
+    border-radius: 8px 0 0 8px;
+    overflow: hidden;
   }
-
-  /* Hide header text, keep the colour bar */
-  .headerUr,
-  .headerEn { display: none; }
-
   .header {
     padding: 8px 4px;
+    border-radius: 6px 0 0 0;
   }
-
-  /* Hide spine, text, and dot — show only the number circle */
-  .spine      { display: none; }
-  .labelText  { display: none; }
-  .dot        { display: none; }
-
-  .label {
-    border-left: none;
-    margin-left: 0;
-    margin-right: 0;
-    padding: 4px 0;
-    justify-content: center;
-    background: none !important;
-  }
-
-  .labelNum {
-    width: 24px;
-    height: 24px;
+  .headerUr {
     font-size: 11px;
-    margin-right: 0;
   }
-
-  .footer { display: none; }
+  .headerEn {
+    display: none;
+  }
+  .labelsContainer {
+    overflow: hidden;
+  }
+  .label {
+    margin-left: 4px;
+    margin-right: 2px;
+    padding: 4px 2px;
+    gap: 0;
+    border-left-width: 3px;
+    border-radius: 0 4px 4px 0;
+  }
+  .labelText {
+    display: none;
+  }
+  .labelNum {
+    width: 20px;
+    height: 20px;
+    font-size: 9px;
+    margin-right: 2px;
+    flex-shrink: 0;
+  }
+  .dot {
+    left: -5px;
+    width: 8px;
+    height: 8px;
+  }
+  .footer {
+    display: none;
+  }
+  .spine {
+    left: 8px;
+  }
 }

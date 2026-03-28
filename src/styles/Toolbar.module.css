@@ -65,6 +65,22 @@
 }
 .btnExport:hover { background: rgba(200, 160, 50, 0.12); }
 
+.btnAdmin {
+  background: rgba(200, 160, 50, 0.12);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.btnAdmin:hover { background: rgba(200, 160, 50, 0.22); }
+
+.btnAdminLocked {
+  background: rgba(200, 160, 50, 0.08);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.btnAdminLocked:hover {
+  background: rgba(200, 160, 50, 0.2);
+}
+
 /* ── Search ── */
 .searchWrap {
   position: relative;

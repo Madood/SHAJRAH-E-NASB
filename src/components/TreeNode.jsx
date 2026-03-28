@@ -13,6 +13,8 @@ export default function TreeNode({
   editMode,
   searchHits,
   searchActive,
+  search,
+  activeMatchId,
   onToggle,
   onAdd,
   onEdit,
@@ -34,7 +36,9 @@ export default function TreeNode({
         hasChildren={hasChildren}
         editMode={editMode}
         isMatch={searchHits.has(node.id)}
+        isActiveMatch={node.id === activeMatchId}
         searchActive={searchActive}
+        search={search}
         onToggle={onToggle}
         onAdd={onAdd}
         onEdit={onEdit}
@@ -90,6 +94,8 @@ export default function TreeNode({
                     editMode={editMode}
                     searchHits={searchHits}
                     searchActive={searchActive}
+                    search={search}
+                    activeMatchId={activeMatchId}
                     onToggle={onToggle}
                     onAdd={onAdd}
                     onEdit={onEdit}

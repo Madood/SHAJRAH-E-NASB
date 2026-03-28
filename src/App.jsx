@@ -2,7 +2,7 @@
 // SHAJRA APP — Root App Component
 // ═══════════════════════════════════════════════
 
-import React, { useState, useRef, useCallback, useEffect } from 'react'
+import React, { useState, useRef, useCallback, useEffect, useMemo } from 'react'
 import styles from './styles/App.module.css'
 
 import Header      from './components/Header'
@@ -11,22 +11,29 @@ import Legend      from './components/Legend'
 import NaslSidebar from './components/NaslSidebar'
 import TreeNode    from './components/TreeNode'
 import Modal       from './components/Modal'
+import ZoomControls from './components/ZoomControls'
 
-import { useTree } from './hooks/useTree'
+import { useTree }    from './hooks/useTree'
 import { useStorage } from './hooks/useStorage'
+import { usePanZoom } from './hooks/usePanZoom'
+import AdminLogin from './components/AdminLogin'
+
+// ── Change this password to whatever you want ──
+const ADMIN_PASSWORD = 'maharvi2025'
+
+// Clear any leftover admin session from older versions of the app
+sessionStorage.removeItem('shajra_admin')
 
 const EMPTY_FORM = {
   name: '', nameAr: '', notes: '', nasl: 2, branch: 'samad', ra: true,
 }
 
 export default function App() {
-  const treePanelRef   = useRef(null)
-  const chartWrapperRef = useRef(null)
-  const mainLayoutRef   = useRef(null)
-  const [renderKey, setRenderKey] = useState(0)       // triggers sidebar re-measure
-  const [modal, setModal] = useState(null)             // null | { mode:'add'|'edit', ... }
-  const [form, setForm]   = useState(EMPTY_FORM)
-  const [zoom, setZoom]   = useState(1)
+  const treePanelRef = useRef(null)
+  const [renderKey, setRenderKey] = useState(0)
+  const [modal, setModal] = useState(null)
+  const [form,  setForm]  = useState(EMPTY_FORM)
+
   const { savedAt } = useStorage()
 
   const {
@@ -36,10 +43,35 @@ export default function App() {
     setEditMode, setSearch,
   } = useTree()
 
+  // ── Pan / zoom ──
+  const {
+    setContainerRef, wrapperRef, scale, offset, percent,
+    handlers, zoomIn, zoomOut, resetView, panToNode, zoomAndPanToNode,
+  } = usePanZoom()
+
+  // ── Admin auth ──
+  const [isAdmin, setIsAdmin] = useState(false)
+  const [showAdminLogin, setShowAdminLogin] = useState(false)
+
+  const handleAdminUnlock = useCallback((password, callback) => {
+    if (password === ADMIN_PASSWORD) {
+      setIsAdmin(true)
+      setShowAdminLogin(false)
+      callback(true)
+    } else {
+      callback(false)
+    }
+  }, [])
+
+  const handleAdminLock = useCallback(() => {
+    setIsAdmin(false)
+    setEditMode(false)
+  }, [setEditMode])
+
   // Force re-render key so NaslSidebar re-measures
   const bumpKey = useCallback(() => setRenderKey((k) => k + 1), [])
 
-  // ── Toggle node (and re-measure) ──
+  // ── Toggle node ──
   const handleToggle = useCallback((id) => {
     toggleNode(id)
     setTimeout(bumpKey, 80)
@@ -48,12 +80,18 @@ export default function App() {
   const handleExpandAll = useCallback(() => {
     expandAll()
     setTimeout(bumpKey, 80)
-  }, [expandAll, bumpKey])
+    // Re-centre on root at current scale (tree is too wide to auto-fit readably)
+    setTimeout(() => {
+      const rootEl = document.querySelector('[data-node-id="root"]')
+      if (rootEl) panToNode(rootEl)
+    }, 400)
+  }, [expandAll, bumpKey, panToNode])
 
   const handleCollapseAll = useCallback(() => {
     collapseAll()
     setTimeout(bumpKey, 80)
-  }, [collapseAll, bumpKey])
+    setTimeout(resetView, 250)
+  }, [collapseAll, bumpKey, resetView])
 
   // ── Modal helpers ──
   const openAdd = useCallback((parentId, parentNasl, branch) => {
@@ -73,7 +111,7 @@ export default function App() {
     setModal({ mode: 'edit', nodeId: node.id })
   }, [])
 
-  const closeModal = useCallback(() => setModal(null), [])
+  const closeModal  = useCallback(() => setModal(null), [])
 
   const submitModal = useCallback(() => {
     if (!form.name.trim()) return
@@ -106,30 +144,31 @@ export default function App() {
     setTimeout(bumpKey, 120)
   }, [setSearch, bumpKey])
 
-  // ── Zoom ──
-  const zoomIn  = useCallback(() => { setZoom(z => Math.min(parseFloat((z + 0.15).toFixed(2)), 1.5)); setTimeout(bumpKey, 80) }, [bumpKey])
-  const zoomOut = useCallback(() => { setZoom(z => Math.max(parseFloat((z - 0.15).toFixed(2)), 0.3)); setTimeout(bumpKey, 80) }, [bumpKey])
+  // ── Match navigation ──
+  const matchIds = useMemo(() => [...searchHits], [search, tree])
+  const [currentMatchIndex, setCurrentMatchIndex] = useState(0)
 
-  // ── Auto-fit zoom on mobile so full chart is visible ──
-  const fitMobileZoom = useCallback(() => {
-    if (window.innerWidth > 768) return
-    const wrapper  = chartWrapperRef.current
-    const layout   = mainLayoutRef.current
-    if (!wrapper || !layout) return
-    const natural   = wrapper.offsetWidth   // layout px (transform never affects this)
-    const available = layout.clientWidth
-    if (natural > 0) {
-      setZoom(parseFloat(Math.max(0.2, available / natural).toFixed(2)))
-    }
-  }, [])   // no bumpKey — adding it would cause renderKey→fitMobileZoom→bumpKey→renderKey loop
+  useEffect(() => { setCurrentMatchIndex(0) }, [search])
 
+  // Pan tree panel to center the active search match
   useEffect(() => {
-    if (!ready) return
-    const t = setTimeout(fitMobileZoom, 150)
-    window.addEventListener('resize', fitMobileZoom)
-    return () => { clearTimeout(t); window.removeEventListener('resize', fitMobileZoom) }
-  }, [ready, renderKey, fitMobileZoom])
+    if (!matchIds.length) return
+    const activeId = matchIds[currentMatchIndex]
+    if (!activeId) return
+    const t = setTimeout(() => {
+      const el = document.querySelector(`[data-node-id="${activeId}"]`)
+      if (el) zoomAndPanToNode(el)
+    }, 250)
+    return () => clearTimeout(t)
+  }, [matchIds, currentMatchIndex, zoomAndPanToNode])
 
+  const handleNextMatch = useCallback(() => {
+    setCurrentMatchIndex((i) => (i + 1) % matchIds.length)
+  }, [matchIds.length])
+
+  const handlePrevMatch = useCallback(() => {
+    setCurrentMatchIndex((i) => (i - 1 + matchIds.length) % matchIds.length)
+  }, [matchIds.length])
 
   // ── Export JSON ──
   const handleExport = useCallback(() => {
@@ -167,6 +206,7 @@ export default function App() {
       {/* ── TOOLBAR ── */}
       <Toolbar
         editMode={editMode}
+        isAdmin={isAdmin}
         search={search}
         savedAt={savedAt}
         saveMode={saveMode}
@@ -174,19 +214,40 @@ export default function App() {
         onCollapseAll={handleCollapseAll}
         onToggleEdit={() => { setEditMode((m) => !m); bumpKey() }}
         onReset={handleReset}
+        onRequestAdmin={() => setShowAdminLogin(true)}
+        onAdminLock={handleAdminLock}
         onSearch={handleSearch}
         onPrint={handlePrint}
         onExport={handleExport}
       />
 
-      {/* ── Search result count ── */}
+      {/* ── Search navigation bar ── */}
       {searchActive && (
-        <div className={`${styles.searchCount} ${
-          searchHits.size ? styles.searchCountFound : styles.searchCountNone
-        }`}>
-          {searchHits.size
-            ? `${searchHits.size} person${searchHits.size > 1 ? 's' : ''} found — highlighted in orange`
-            : 'No matches found'}
+        <div className={styles.searchNav}>
+          {matchIds.length > 0 ? (
+            <>
+              <button
+                className={styles.navArrow}
+                onClick={handlePrevMatch}
+                disabled={matchIds.length <= 1}
+                title="Previous match"
+              >‹</button>
+              <span className={styles.navCount}>
+                <span className={styles.navCurrent}>{currentMatchIndex + 1}</span>
+                <span className={styles.navSep}> of </span>
+                <span className={styles.navTotal}>{matchIds.length}</span>
+                <span className={styles.navLabel}> found</span>
+              </span>
+              <button
+                className={styles.navArrow}
+                onClick={handleNextMatch}
+                disabled={matchIds.length <= 1}
+                title="Next match"
+              >›</button>
+            </>
+          ) : (
+            <span className={styles.searchCountNone}>No matches found</span>
+          )}
         </div>
       )}
 
@@ -204,90 +265,69 @@ export default function App() {
       <Legend />
 
       {/* ── MAIN LAYOUT ── */}
-      <div className={styles.mainLayout} ref={mainLayoutRef}>
+      <div className={styles.mainLayout}>
+        <div className={styles.chartWrapper}>
 
-        {/* Chart wrapper — scaled as one unit */}
-        <div
-          className={styles.chartWrapper}
-          ref={chartWrapperRef}
-          style={{ transform: `scale(${zoom})`, transformOrigin: 'top left' }}
-        >
+          {/* Nasl Sidebar */}
+          <NaslSidebar treePanelRef={treePanelRef} renderKey={renderKey} scale={scale} wrapperRef={wrapperRef} />
 
-        {/* Nasl Sidebar */}
-        <NaslSidebar treePanelRef={treePanelRef} renderKey={renderKey} zoom={zoom} />
+          {/* Tree Panel — pan/zoom canvas */}
+          <div
+            className={styles.treePanel}
+            ref={(el) => {
+              treePanelRef.current = el
+              setContainerRef(el)
+            }}
+            {...handlers}
+          >
+            {/* Pannable + zoomable canvas */}
+            <div
+              ref={wrapperRef}
+              className={styles.panWrapper}
+              style={{ transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})` }}
+            >
+              <div className={styles.treeInner}>
+                {tree && (
+                  <TreeNode
+                    node={tree}
+                    expanded={expanded}
+                    editMode={editMode}
+                    searchHits={searchHits}
+                    searchActive={searchActive}
+                    search={search}
+                    activeMatchId={matchIds[currentMatchIndex] || null}
+                    onToggle={handleToggle}
+                    onAdd={openAdd}
+                    onEdit={openEdit}
+                    onDelete={handleDelete}
+                  />
+                )}
+              </div>
 
-        {/* Tree Panel */}
-        <div className={styles.treePanel} ref={treePanelRef}>
-          <div className={styles.treeInner}>
-            {tree && (
-              <TreeNode
-                node={tree}
-                expanded={expanded}
-                editMode={editMode}
-                searchHits={searchHits}
-                searchActive={searchActive}
-                onToggle={handleToggle}
-                onAdd={openAdd}
-                onEdit={openEdit}
-                onDelete={handleDelete}
-              />
-            )}
-          </div>
+              {/* Creator credit */}
+              <div className={styles.creatorRow}>
+                <div className={styles.creatorLine} />
+                <div className={styles.creatorBox}>
+                  <span className={styles.creatorLabel}>ترتیب و تخلیق</span>
+                  <span className={styles.creatorDivider}>✦</span>
+                  <span className={styles.creatorName}>Sahibzada Abu Madood Maharvi</span>
+                  <span className={styles.creatorNameUr}>صاحبزادہ ابو مودود مہاروی</span>
+                </div>
+                <div className={styles.creatorLine} />
+              </div>
+            </div>{/* end panWrapper */}
 
-          {/* Creator credit — always visible at bottom of tree panel */}
-          <div className={styles.creatorRow}>
-            <div className={styles.creatorLine} />
-            <div className={styles.creatorBox}>
-              <span className={styles.creatorLabel}>ترتیب و تخلیق</span>
-              <span className={styles.creatorDivider}>✦</span>
-              <span className={styles.creatorName}>Sahibzada Abu Madood Maharvi</span>
-              <span className={styles.creatorNameUr}>صاحبزادہ ابو مودود مہاروی</span>
-            </div>
-            <div className={styles.creatorLine} />
-          </div>
-
-        </div>
+            {/* Zoom controls — outside panWrapper so they stay fixed in corner */}
+            <ZoomControls
+              percent={percent}
+              onZoomIn={zoomIn}
+              onZoomOut={zoomOut}
+              onReset={resetView}
+            />
+          </div>{/* end treePanel */}
 
         </div>{/* end chartWrapper */}
-
-      </div>
-
-      {/* ── Floating chart controls — outside chartWrapper so position:fixed works ── */}
-      <div className={styles.chartControls}>
-        {/* Expand / Collapse toggle */}
-        <button
-          className={styles.ctrlBtn}
-          onClick={() => expanded.size <= 1 ? handleExpandAll() : handleCollapseAll()}
-          title={expanded.size <= 1 ? 'Expand All' : 'Collapse All'}
-        >
-          {expanded.size <= 1 ? '⊞' : '⊟'}
-        </button>
-
-        <div className={styles.ctrlSep} />
-
-        {/* Zoom in */}
-        <button
-          className={styles.ctrlBtn}
-          onClick={zoomIn}
-          title="Zoom In"
-          disabled={zoom >= 1.5}
-        >
-          ＋
-        </button>
-
-        {/* Zoom level */}
-        <span className={styles.ctrlLabel}>{Math.round(zoom * 100)}%</span>
-
-        {/* Zoom out */}
-        <button
-          className={styles.ctrlBtn}
-          onClick={zoomOut}
-          title="Zoom Out"
-          disabled={zoom <= 0.3}
-        >
-          －
-        </button>
-      </div>
+      </div>{/* end mainLayout */}
 
       {/* ── FOOTER ── */}
       <footer className={styles.footer}>
@@ -305,6 +345,14 @@ export default function App() {
           setForm={setForm}
           onSubmit={submitModal}
           onClose={closeModal}
+        />
+      )}
+
+      {/* ── ADMIN LOGIN ── */}
+      {showAdminLogin && (
+        <AdminLogin
+          onSuccess={handleAdminUnlock}
+          onClose={() => setShowAdminLogin(false)}
         />
       )}
 

@@ -2,7 +2,7 @@
 // SHAJRA APP — Configuration Constants
 // ═══════════════════════════════════════════════
 
-export const STORAGE_KEY = 'shajra_v5'
+export const STORAGE_KEY = 'shajra_v7'
 
 export const NASL_CONFIG = [
   { n: 1,  ur: 'نسل اول',    eng: '1st',  color: '#c8a032' },

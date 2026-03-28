@@ -2,7 +2,7 @@
 // SHAJRA APP — NodeCard Component
 // ═══════════════════════════════════════════════
 
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import styles from '../styles/NodeCard.module.css'
 import { NASL_CONFIG, BRANCH_COLORS } from '../constants/config'
 import { countDescendants } from '../utils/treeOps'
@@ -13,7 +13,9 @@ export default function NodeCard({
   hasChildren,
   editMode,
   isMatch,
+  isActiveMatch,
   searchActive,
+  search,
   onToggle,
   onAdd,
   onEdit,
@@ -34,12 +36,12 @@ export default function NodeCard({
   const cardStyle = {
     width: cardWidth,
     background: colors.bg,
-    borderColor: isMatch && searchActive ? '#ff6600' : colors.border,
+    borderColor: isActiveMatch && searchActive ? '#ff6600'
+               : isMatch       && searchActive ? 'rgba(255,120,30,0.55)'
+               : colors.border,
     boxShadow: isRoot
       ? `0 0 0 3px #1a3a1a, 0 0 0 5px ${colors.border}, 0 8px 28px rgba(0,0,0,0.35)`
-      : isMatch && searchActive
-        ? `0 0 0 3px rgba(255,102,0,0.35), 0 4px 14px rgba(0,0,0,0.15)`
-        : `0 3px 12px rgba(0,0,0,0.14)`,
+      : `0 3px 12px rgba(0,0,0,0.14)`,
   }
 
   const badgeStyle = {
@@ -63,8 +65,14 @@ export default function NodeCard({
         className={`${styles.card} ${isRoot ? styles.cardRoot : ''}`}
         style={cardStyle}
         data-nasl-node={node.nasl}
+        data-node-id={node.id}
         onClick={() => hasChildren && onToggle(node.id)}
       >
+        {/* Ripple overlay — only on the currently active match; key restarts animation on navigation */}
+        {isActiveMatch && searchActive && (
+          <div key={`${search}-${node.id}`} className={styles.ripple} />
+        )}
+
         {/* Nasl badge */}
         <div className={styles.badge} style={badgeStyle}>
           {naslCfg ? naslCfg.ur : `نسل ${node.nasl}`}

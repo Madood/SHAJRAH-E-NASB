@@ -7,6 +7,7 @@ import styles from '../styles/Toolbar.module.css'
 
 export default function Toolbar({
   editMode,
+  isAdmin,
   search,
   savedAt,
   saveMode,
@@ -14,6 +15,8 @@ export default function Toolbar({
   onCollapseAll,
   onToggleEdit,
   onReset,
+  onRequestAdmin,
+  onAdminLock,
   onSearch,
   onPrint,
   onExport,
@@ -40,15 +43,43 @@ export default function Toolbar({
         <button className={styles.btn} onClick={onCollapseAll}>
           ⊟ Collapse All
         </button>
-        <button
-          className={`${styles.btn} ${editMode ? styles.btnActive : ''}`}
-          onClick={onToggleEdit}
-        >
-          {editMode ? '✓ Edit Mode ON' : '✎ Edit Mode'}
-        </button>
-        <button className={`${styles.btn} ${styles.btnDanger}`} onClick={onReset}>
-          ↺ Reset
-        </button>
+
+        {/* Admin-only buttons — only visible when logged in */}
+        {isAdmin && (
+          <>
+            <button
+              className={`${styles.btn} ${editMode ? styles.btnActive : ''}`}
+              onClick={onToggleEdit}
+            >
+              {editMode ? '✓ Edit Mode ON' : '✎ Edit Mode'}
+            </button>
+            <button
+              className={`${styles.btn} ${styles.btnDanger}`}
+              onClick={onReset}
+            >
+              ↺ Reset
+            </button>
+          </>
+        )}
+
+        {/* Admin toggle button */}
+        {isAdmin ? (
+          <button
+            className={`${styles.btn} ${styles.btnAdmin}`}
+            onClick={onAdminLock}
+            title="Lock admin session"
+          >
+            🔓 Lock Admin
+          </button>
+        ) : (
+          <button
+            className={`${styles.btn} ${styles.btnAdminLocked}`}
+            onClick={onRequestAdmin}
+            title="Admin login"
+          >
+            🔒 Admin
+          </button>
+        )}
       </div>
 
       {/* Search */}
@@ -82,9 +113,12 @@ export default function Toolbar({
         <button className={`${styles.btn} ${styles.btnPrint}`} onClick={onPrint}>
           ⎙ Print
         </button>
-        <button className={`${styles.btn} ${styles.btnExport}`} onClick={onExport}>
-          ↓ Export JSON
-        </button>
+        {/* Export JSON — admin only */}
+        {isAdmin && (
+          <button className={`${styles.btn} ${styles.btnExport}`} onClick={onExport}>
+            ↓ Export JSON
+          </button>
+        )}
       </div>
     </div>
   )

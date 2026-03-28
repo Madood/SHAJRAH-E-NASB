@@ -23,46 +23,93 @@
   letter-spacing: 0.4px;
 }
 
-/* ── Search result count ── */
-.searchCount {
+/* ── Search navigation bar ── */
+.searchNav {
   flex-shrink: 0;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.navArrow {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  background: rgba(200,160,50,0.1);
+  color: var(--gold);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.15s, transform 0.15s;
+}
+.navArrow:hover:not(:disabled) {
+  background: rgba(200,160,50,0.25);
+  transform: scale(1.12);
+}
+.navArrow:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.navCount {
   font-family: var(--font-serif);
   font-size: 11px;
-  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.navCurrent { color: #ff8040; font-weight: 700; font-size: 13px; }
+.navSep     { color: rgba(200,240,200,0.4); }
+.navTotal   { color: #80d880; }
+.navLabel   { color: rgba(200,240,200,0.4); }
+
+.searchCountNone {
+  font-family: var(--font-serif);
+  font-size: 11px;
+  color: #d88080;
   letter-spacing: 0.4px;
 }
-.searchCountFound { color: #80d880; }
-.searchCountNone  { color: #d88080; }
 
-/* ── Main layout — the only scrolling region ── */
+/* ── Main layout — flex row housing sidebar + tree panel ── */
 .mainLayout {
   flex: 1;
   min-height: 0;
-  overflow: auto;
+  overflow: hidden;
+  position: relative;
 }
 
-/* ── Chart wrapper — sidebar + tree scaled as one unit ── */
+/* ── Chart wrapper — sidebar + tree panel side by side, full height ── */
 .chartWrapper {
   display: flex;
+  height: 100%;
   gap: 0;
   align-items: stretch;
-  min-width: 100%;      /* fill full width on large screens */
-  width: max-content;   /* grow wider than 100% when tree content demands it */
-  transform-origin: top left;
 }
 
-/* ── Tree panel ── */
+/* ── Tree panel — the pan/zoom canvas viewport ── */
 .treePanel {
-  flex: 1 0 auto;         /* grow to fill space, never shrink below content size */
-  min-width: max-content; /* always as wide as the widest tree row */
-  background: var(--cream-mid);
-  border: 2px solid var(--gold);
-  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-  padding: 44px 80px 24px 50px;
-  overflow: visible;
-  box-shadow: var(--shadow-lg);
+  flex: 1;
+  min-width: 0;
+  background: linear-gradient(160deg, #f8f5e8, #f0ead8);
+  border: 2px solid #c8a032;
+  border-radius: 0 16px 16px 0;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.40);
+  min-height: 200px;
   position: relative;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+.treePanel:active {
+  cursor: grabbing;
 }
 
 /* Subtle geometric background */
@@ -87,13 +134,25 @@
     );
   pointer-events: none;
   border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  z-index: 0;
+}
+
+/* Pannable + zoomable inner canvas */
+.panWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+  will-change: transform;
+  width: max-content;
+  height: max-content;
 }
 
 .treeInner {
   position: relative;
+  padding: 5%;
   min-width: max-content;
   margin: 0;
-  padding: 16px 60px 40px 16px;
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -150,93 +209,13 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .pageWrapper {
-    padding-left: 4px;
-    padding-right: 4px;
-  }
-
-  .treePanel {
-    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-    padding: 28px 40px 40px 28px;
-  }
-
-  .treeInner {
-    padding: 12px 40px 30px 12px;
-  }
+  .pageWrapper { padding-left: 4px; padding-right: 4px; }
 }
-
 @media (max-width: 480px) {
-  .pageWrapper {
-    padding-left: 2px;
-    padding-right: 2px;
-  }
-
-  .treePanel {
-    padding: 20px 32px 32px 20px;
-  }
-
-  .treeInner {
-    padding: 8px 32px 24px 8px;
-  }
+  .pageWrapper { padding-left: 2px; padding-right: 2px; }
 }
 
-/* ── Floating chart controls (bottom-right of flow box) ── */
-.chartControls {
-  position: fixed;
-  bottom: 56px;
-  right: 22px;
-  z-index: 200;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  background: linear-gradient(160deg, var(--panel-dark), var(--panel-deep));
-  border: 1.5px solid var(--gold-dim);
-  border-radius: 14px;
-  padding: 10px 8px;
-  box-shadow: var(--shadow-lg);
-}
-
-.ctrlBtn {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 1.5px solid var(--gold-dim);
-  background: rgba(200, 160, 50, 0.08);
-  color: var(--gold);
-  font-size: 17px;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background var(--transition), transform 0.15s, border-color var(--transition);
-  padding: 0;
-}
-.ctrlBtn:hover:not(:disabled) {
-  background: rgba(200, 160, 50, 0.22);
-  border-color: var(--gold);
-  transform: scale(1.12);
-}
-.ctrlBtn:disabled {
-  opacity: 0.3;
-  cursor: default;
-}
-
-.ctrlSep {
-  width: 20px;
-  height: 1.5px;
-  background: var(--gold-dim);
-  border-radius: 1px;
-}
-
-.ctrlLabel {
-  font-family: var(--font-serif);
-  font-size: 8.5px;
-  color: rgba(200, 160, 50, 0.55);
-  letter-spacing: 0.5px;
-  user-select: none;
-}
+/* (zoom controls are now inside treePanel via ZoomControls component) */
 
 /* ── Creator credit row ── */
 .creatorRow {
@@ -299,12 +278,58 @@
   margin-left: 2px;
 }
 
+/* ── Mobile layout ── */
+@media (max-width: 600px) {
+  .pageWrapper {
+    padding: 10px 0 40px;
+  }
+  .mainLayout {
+    gap: 0;
+  }
+  .treePanel {
+    border-radius: 0 8px 8px 0;
+  }
+  .creatorRow {
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 20px;
+    padding: 0 6px;
+  }
+  .creatorBox {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 10px;
+  }
+  .creatorName {
+    font-size: 9px;
+  }
+  .creatorNameUr {
+    font-size: 9px;
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid rgba(200,160,50,0.3);
+    padding-top: 4px;
+    margin-top: 2px;
+  }
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+  .searchWrap {
+    flex: none;
+    width: 100%;
+  }
+}
+
 /* ── Print ── */
 @media print {
-  .editBanner,
-  .searchCount { display: none; }
+  .editBanner, .searchCount { display: none; }
   .pageWrapper { height: auto; overflow: visible; }
-  .mainLayout  { overflow: visible; }
-  .chartWrapper { transform: none !important; width: 100%; }
-  .treePanel   { border-radius: var(--radius-lg); box-shadow: none; overflow: visible; }
+  .mainLayout  { overflow: visible; height: auto; }
+  .chartWrapper { height: auto; }
+  .treePanel   { overflow: visible; cursor: default; border-radius: var(--radius-lg); box-shadow: none; }
+  .panWrapper  { position: static; transform: none !important; }
 }
