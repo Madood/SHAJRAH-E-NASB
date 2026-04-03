@@ -1,4 +1,5 @@
 {
+  "dataVersion": "20260403c",
   "id": "root",
   "name": "Hazrat Khwaja Noor Muhammad Maharvi",
   "nameAr": "حضرت خواجہ نور محمد مہاروی",
@@ -377,7 +378,144 @@
                       "nasl": 6,
                       "branch": "samad",
                       "ra": true,
-                      "children": []
+                      "children": [
+                        {
+                          "id": "n1001_5t5",
+                          "name": "Sahibzada Abdul samand saheb",
+                          "nameAr": "صاحبزادہ Abdul سمند صاحب",
+                          "notes": "",
+                          "nasl": 7,
+                          "branch": "samad",
+                          "ra": true,
+                          "children": [
+                            {
+                              "id": "n1003_f09",
+                              "name": "Sahibzada Abdul Razak sahib",
+                              "nameAr": "صاحبزادہ Abdul Razak صاحب",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "samad",
+                              "ra": true,
+                              "children": [
+                                {
+                                  "id": "n1005_6pj",
+                                  "name": "Sahibzada Muhammad uzair sahib",
+                                  "nameAr": "صاحبزادہ محمد uzair صاحب",
+                                  "notes": "",
+                                  "nasl": 9,
+                                  "branch": "samad",
+                                  "ra": true,
+                                  "children": [
+                                    {
+                                      "id": "n1006_16m",
+                                      "name": "sahibzada abdul samad sahib",
+                                      "nameAr": "صاحبزادہ abdul صمد صاحب",
+                                      "notes": "",
+                                      "nasl": 10,
+                                      "branch": "samad",
+                                      "ra": true,
+                                      "children": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "id": "n1004_zsr",
+                              "name": "Sahibzada Abdul ghaffar sahib",
+                              "nameAr": "صاحبزادہ عبدالغفار صاحب",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "samad",
+                              "ra": true,
+                              "children": [
+                                {
+                                  "id": "n1007_ndl",
+                                  "name": "Sahibzada Ali Raza sahib",
+                                  "nameAr": "صاحبزادہ علی Raza صاحب",
+                                  "notes": "",
+                                  "nasl": 9,
+                                  "branch": "samad",
+                                  "ra": true,
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "id": "n1002_z0o",
+                          "name": "Hazrat SAhibzada abDul Rauf sahib",
+                          "nameAr": "حضرت صاحبزادہ abDul Rauf صاحب",
+                          "notes": "",
+                          "nasl": 7,
+                          "branch": "samad",
+                          "ra": true,
+                          "children": [
+                            {
+                              "id": "n1008_5gi",
+                              "name": "Sahibzada Abdul ghafoor sahib",
+                              "nameAr": "صاحبزادہ Abdul غفور صاحب",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "samad",
+                              "ra": true,
+                              "children": [
+                                {
+                                  "id": "n1013_hjx",
+                                  "name": "Sahibzada Abdul saim saheb",
+                                  "nameAr": "صاحبزادہ Abdul saim صاحب",
+                                  "notes": "",
+                                  "nasl": 9,
+                                  "branch": "samad",
+                                  "ra": true,
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "id": "n1009_0pn",
+                              "name": "Sahibzada Abdul basit sahib",
+                              "nameAr": "صاحبزادہ Abdul basit صاحب",
+                              "notes": "tahir sahib",
+                              "nasl": 8,
+                              "branch": "samad",
+                              "ra": true,
+                              "children": []
+                            },
+                            {
+                              "id": "n1010_b8y",
+                              "name": "sahibzada abdul naeem sahib",
+                              "nameAr": "صاحبزادہ abdul نعیم صاحب",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "samad",
+                              "ra": true,
+                              "children": []
+                            },
+                            {
+                              "id": "n1011_b6p",
+                              "name": "Sahibzada Mian Muhammad ali sahib",
+                              "nameAr": "صاحبزادہ میاں محمد علی صاحب",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "samad",
+                              "ra": true,
+                              "children": []
+                            },
+                            {
+                              "id": "n1012_bqd",
+                              "name": "Sahibzada abdul mannan sahib",
+                              "nameAr": "صاحبزادہ abdul mannan صاحب",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "samad",
+                              "ra": true,
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
                     },
                     {
                       "id": "n1006_use",
@@ -572,7 +710,38 @@
                               "nasl": 8,
                               "branch": "samad",
                               "ra": true,
-                              "children": []
+                              "children": [
+                                {
+                                  "id": "n1001_rm9",
+                                  "name": "Sahibzada Asfand yaar sahib",
+                                  "nameAr": "صاحبزادہ اسفند یار صاحب",
+                                  "notes": "",
+                                  "nasl": 9,
+                                  "branch": "samad",
+                                  "ra": true,
+                                  "children": []
+                                },
+                                {
+                                  "id": "n1002_ibo",
+                                  "name": "Sahibzada Ahmad yaar sahib",
+                                  "nameAr": "صاحبزادہ احمد یار صاحب",
+                                  "notes": "",
+                                  "nasl": 9,
+                                  "branch": "samad",
+                                  "ra": true,
+                                  "children": []
+                                },
+                                {
+                                  "id": "n1003_2o0",
+                                  "name": "Sahibzada Shahryar sahib",
+                                  "nameAr": "صاحبزادہ شہریار صاحب",
+                                  "notes": "",
+                                  "nasl": 9,
+                                  "branch": "samad",
+                                  "ra": true,
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         }
@@ -619,8 +788,8 @@
                             },
                             {
                               "id": "n1046_d5o",
-                              "name": "Sahibzada Badar ud deen saheb",
-                              "nameAr": "صاحبزادہ بدر الدین صاحب",
+                              "name": "Sahibzada Ahmad Yaar Badar saheb",
+                              "nameAr": "صاحبزادہ احمد یار بدر صاحب",
                               "notes": "",
                               "nasl": 8,
                               "branch": "samad",
@@ -752,8 +921,8 @@
                               "children": [
                                 {
                                   "id": "n1044_yfn",
-                                  "name": "Sahibzada Burhan ud deen Ahil",
-                                  "nameAr": "صاحبزادہ برہان الدین Ahil",
+                                  "name": "Sahibzada Muhammad Burhan ud deen Aa'ahil",
+                                  "nameAr": "صاحبزادہ برہان الدین",
                                   "notes": "",
                                   "nasl": 9,
                                   "branch": "samad",
@@ -1444,8 +1613,8 @@
                               "children": [
                                 {
                                   "id": "n1055_bzd",
-                                  "name": "hAZRAT mIAN MOEEN UD DEEN SAHEB",
-                                  "nameAr": "حضرت میاں معین الدین صاحب",
+                                  "name": "Hazrat Ghulam moin ud din nizami",
+                                  "nameAr": "حضرت غلام معین الدین نظامی ",
                                   "notes": "",
                                   "nasl": 9,
                                   "branch": "ahmad",
@@ -1453,8 +1622,8 @@
                                   "children": [
                                     {
                                       "id": "n1070_5ou",
-                                      "name": "hAZRAT mIAN SHAHAB SAHEB",
-                                      "nameAr": "حضرت میاں شہاب صاحب",
+                                      "name": "hAZRAT Mian Ghulam shahab ud din mehmood",
+                                      "nameAr": "حضرت میاں غلام شہاب الدین محمود",
                                       "notes": "MOJOUDA SAJADA NASHEEN ",
                                       "nasl": 10,
                                       "branch": "ahmad",
@@ -1481,8 +1650,8 @@
                                             },
                                             {
                                               "id": "n1074_kzl",
-                                              "name": "HAZRAT MIAN NALAIN MUSTAFA SAHEB",
-                                              "nameAr": "حضرت میاں نعلین مصطفیٰ صاحب",
+                                              "name": "HAZRAT MIAN NALAIN MUhammad SAHEB",
+                                              "nameAr": "حضرت میاں نعلین محمد صاحب",
                                               "notes": "",
                                               "nasl": 12,
                                               "branch": "ahmad",
@@ -2766,7 +2935,7 @@
                         {
                           "id": "n1057_is9",
                           "name": "SAHIBZAD MUHAMMAD AJMAL SAHIB",
-                          "nameAr": "صاحبزادہ محمد اجمل صاحب",
+                          "nameAr": "صاحبزاد�� محمد اجمل صاحب",
                           "notes": "",
                           "nasl": 7,
                           "branch": "ahmad",
@@ -2915,99 +3084,36 @@
                   "ra": true,
                   "children": [
                     {
-                      "id": "n1090_1yn",
-                      "name": "Hazrat Qadir baksh saheb",
-                      "nameAr": "حضرت قادر بخش صاحب",
+                      "id": "n1009_2p9",
+                      "name": "HazRat Ghulam Rasool saheb",
+                      "nameAr": "حضرت غلام رسول صاحب",
                       "notes": "",
                       "nasl": 6,
                       "branch": "ahmad",
                       "ra": true,
                       "children": [
                         {
-                          "id": "n1009_2p9",
-                          "name": "Ghulam Rasool",
-                          "nameAr": "غلام رسول",
+                          "id": "n1012_783",
+                          "name": "Mian Qadir baksh saheb",
+                          "nameAr": "میاں قادر بخش صاحب",
                           "notes": "",
                           "nasl": 7,
                           "branch": "ahmad",
-                          "ra": true,
+                          "ra": false,
                           "children": [
                             {
-                              "id": "n1012_783",
-                              "name": "Mian Qadir baksh saheb",
-                              "nameAr": "میاں قادر بخش صاحب",
+                              "id": "n1018_9ft",
+                              "name": "Mian Bakhtiar saheb",
+                              "nameAr": "میاں بختیار صاحب",
                               "notes": "",
                               "nasl": 8,
                               "branch": "ahmad",
                               "ra": false,
                               "children": [
                                 {
-                                  "id": "n1018_9ft",
-                                  "name": "Mian Bakhtiar saheb",
-                                  "nameAr": "میاں بختیار صاحب",
-                                  "notes": "",
-                                  "nasl": 9,
-                                  "branch": "ahmad",
-                                  "ra": false,
-                                  "children": [
-                                    {
-                                      "id": "n1019_gd3",
-                                      "name": "Mian qadir baksh saheb",
-                                      "nameAr": "میاں قادر بخش صاحب",
-                                      "notes": "",
-                                      "nasl": 10,
-                                      "branch": "ahmad",
-                                      "ra": false,
-                                      "children": []
-                                    }
-                                  ]
-                                }
-                              ]
-                            },
-                            {
-                              "id": "n1013_73c",
-                              "name": "Mian Irshad saheb ",
-                              "nameAr": "میاں ارشاد صاحب",
-                              "notes": "",
-                              "nasl": 8,
-                              "branch": "ahmad",
-                              "ra": true,
-                              "children": [
-                                {
-                                  "id": "n1010_e8a",
-                                  "name": "sAHIBZADA sAMEEH iRSHAD SAHIB",
-                                  "nameAr": "",
-                                  "notes": "",
-                                  "nasl": 9,
-                                  "branch": "ahmad",
-                                  "ra": true,
-                                  "children": []
-                                }
-                              ]
-                            },
-                            {
-                              "id": "n1014_cd7",
-                              "name": "Mian ahmad baksh saheb",
-                              "nameAr": "میاں احمد بخش صاحب",
-                              "notes": "",
-                              "nasl": 8,
-                              "branch": "ahmad",
-                              "ra": true,
-                              "children": [
-                                {
-                                  "id": "n1020_39h",
-                                  "name": "Mian Ali Ahmad saheb",
-                                  "nameAr": "میاں علی احمد صاحب",
-                                  "notes": "",
-                                  "nasl": 9,
-                                  "branch": "ahmad",
-                                  "ra": false,
-                                  "children": []
-                                },
-                                {
-                                  "id": "n1021_hud",
-                                  "name": "Mian Adil Ahmad saheb",
-                                  "nameAr": "میاں عادل احمد صاحب",
+                                  "id": "n1019_gd3",
+                                  "name": "Mian qadir baksh saheb",
+                                  "nameAr": "میاں قادر بخش صاحب",
                                   "notes": "",
                                   "nasl": 9,
                                   "branch": "ahmad",
@@ -3015,42 +3121,22 @@
                                   "children": []
                                 }
                               ]
-                            },
+                            }
+                          ]
+                        },
+                        {
+                          "id": "n1013_73c",
+                          "name": "Mian Irshad saheb",
+                          "nameAr": "میاں ارشاد صاحب",
+                          "notes": "",
+                          "nasl": 7,
+                          "branch": "ahmad",
+                          "ra": true,
+                          "children": [
                             {
-                              "id": "n1015_xt9",
-                              "name": "Mian Akbar ali saheb",
-                              "nameAr": "میاں اکبر علی صاحب",
-                              "notes": "",
-                              "nasl": 8,
-                              "branch": "ahmad",
-                              "ra": true,
-                              "children": [
-                                {
-                                  "id": "n1005_0ur",
-                                  "name": "sAHIBZADA hASEEB AKBAR SAHIB",
-                                  "nameAr": "",
-                                  "notes": "",
-                                  "nasl": 9,
-                                  "branch": "ahmad",
-                                  "ra": true,
-                                  "children": []
-                                }
-                              ]
-                            },
-                            {
-                              "id": "n1016_v0b",
-                              "name": "Mian atta saheb",
-                              "nameAr": "میاں عطاء صاحب",
-                              "notes": "",
-                              "nasl": 8,
-                              "branch": "ahmad",
-                              "ra": true,
-                              "children": []
-                            },
-                            {
-                              "id": "n1017_u9w",
-                              "name": "Mian faiz rasool saheb",
-                              "nameAr": "میاں فیض رسول صاحب",
+                              "id": "n1010_e8a",
+                              "name": "sAHIBZADA sAMEEH iRSHAD SAHIB",
+                              "nameAr": "صاحبزادہ sAMEEH ارشاد صاحب",
                               "notes": "",
                               "nasl": 8,
                               "branch": "ahmad",
@@ -3060,109 +3146,162 @@
                           ]
                         },
                         {
-                          "id": "n1010_346",
-                          "name": "Hazrat Mian Mustafa saheb",
-                          "nameAr": "حضرت میاں مصطفیٰ صاحب",
+                          "id": "n1014_cd7",
+                          "name": "Mian ahmad baksh saheb",
+                          "nameAr": "میاں احمد بخش صاحب",
                           "notes": "",
                           "nasl": 7,
                           "branch": "ahmad",
                           "ra": true,
                           "children": [
                             {
-                              "id": "n1022_m4p",
-                              "name": "Mian Hamid saheb",
-                              "nameAr": "میاں حامد صاحب",
+                              "id": "n1020_39h",
+                              "name": "Mian Ali Ahmad saheb",
+                              "nameAr": "میاں علی احمد صاحب",
                               "notes": "",
                               "nasl": 8,
                               "branch": "ahmad",
-                              "ra": true,
-                              "children": [
-                                {
-                                  "id": "n1023_6by",
-                                  "name": "Mian Ahsan saheb",
-                                  "nameAr": "میاں احسان صاحب",
-                                  "notes": "",
-                                  "nasl": 9,
-                                  "branch": "ahmad",
-                                  "ra": true,
-                                  "children": []
-                                },
-                                {
-                                  "id": "n1024_xnj",
-                                  "name": "Mian Hamza hamid saheb",
-                                  "nameAr": "میاں",
-                                  "notes": "",
-                                  "nasl": 9,
-                                  "branch": "ahmad",
-                                  "ra": true,
-                                  "children": []
-                                },
-                                {
-                                  "id": "n1025_3a9",
-                                  "name": "Mian tALHA hAMID SAHIB",
-                                  "nameAr": "میاں",
-                                  "notes": "",
-                                  "nasl": 9,
-                                  "branch": "ahmad",
-                                  "ra": true,
-                                  "children": []
-                                }
-                              ]
+                              "ra": false,
+                              "children": []
+                            },
+                            {
+                              "id": "n1021_hud",
+                              "name": "Mian Adil Ahmad saheb",
+                              "nameAr": "میاں عادل احمد صاحب",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "ahmad",
+                              "ra": false,
+                              "children": []
                             }
                           ]
                         },
                         {
-                          "id": "n1011_6y0",
-                          "name": "Mian ghulam fareed saheb",
-                          "nameAr": "میاں غلام فرید صاحب",
+                          "id": "n1015_xt9",
+                          "name": "Mian Akbar ali saheb",
+                          "nameAr": "میاں اکبر علی صاحب",
                           "notes": "",
                           "nasl": 7,
                           "branch": "ahmad",
                           "ra": true,
                           "children": [
                             {
-                              "id": "n1026_omr",
-                              "name": "Mian Siraj saheb",
-                              "nameAr": "میاں سراج صاحب",
+                              "id": "n1005_0ur",
+                              "name": "sAHIBZADA hASEEB AKBAR SAHIB",
+                              "nameAr": "صاحبزادہ hASEEB اکبر صاحب",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "ahmad",
+                              "ra": true,
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "id": "n1016_v0b",
+                          "name": "Mian atta saheb",
+                          "nameAr": "میاں عطاء صاحب",
+                          "notes": "",
+                          "nasl": 7,
+                          "branch": "ahmad",
+                          "ra": true,
+                          "children": []
+                        },
+                        {
+                          "id": "n1017_u9w",
+                          "name": "Mian faiz rasool saheb",
+                          "nameAr": "میاں فیض رسول صاحب",
+                          "notes": "",
+                          "nasl": 7,
+                          "branch": "ahmad",
+                          "ra": true,
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "id": "n1010_346",
+                      "name": "Hazrat Mian Mustafa saheb",
+                      "nameAr": "حضرت میاں مصطفیٰ صاحب",
+                      "notes": "",
+                      "nasl": 6,
+                      "branch": "ahmad",
+                      "ra": true,
+                      "children": [
+                        {
+                          "id": "n1022_m4p",
+                          "name": "Mian Hamid saheb",
+                          "nameAr": "میاں حامد صاحب",
+                          "notes": "",
+                          "nasl": 7,
+                          "branch": "ahmad",
+                          "ra": true,
+                          "children": [
+                            {
+                              "id": "n1023_6by",
+                              "name": "Mian Ahsan saheb",
+                              "nameAr": "میاں احسان صاحب",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "ahmad",
+                              "ra": true,
+                              "children": []
+                            },
+                            {
+                              "id": "n1024_xnj",
+                              "name": "Mian Hamza hamid saheb",
+                              "nameAr": "میاں",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "ahmad",
+                              "ra": true,
+                              "children": []
+                            },
+                            {
+                              "id": "n1025_3a9",
+                              "name": "Mian tALHA hAMID SAHIB",
+                              "nameAr": "میاں",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "ahmad",
+                              "ra": true,
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "n1011_6y0",
+                      "name": "Mian ghulam fareed saheb",
+                      "nameAr": "میاں غلام فرید صاحب",
+                      "notes": "",
+                      "nasl": 6,
+                      "branch": "ahmad",
+                      "ra": true,
+                      "children": [
+                        {
+                          "id": "n1026_omr",
+                          "name": "Mian Siraj saheb",
+                          "nameAr": "میاں سراج صاحب",
+                          "notes": "",
+                          "nasl": 7,
+                          "branch": "ahmad",
+                          "ra": true,
+                          "children": [
+                            {
+                              "id": "n1006_3dd",
+                              "name": "sAHIBZADA mUBASHIR hASSAN SAHIB",
+                              "nameAr": "صاحبزادہ mUBASHIR حسن صاحب",
                               "notes": "",
                               "nasl": 8,
                               "branch": "ahmad",
                               "ra": true,
                               "children": [
                                 {
-                                  "id": "n1006_3dd",
-                                  "name": "sAHIBZADA mUBASHIR hASSAN SAHIB",
-                                  "nameAr": "",
-                                  "notes": "",
-                                  "nasl": 9,
-                                  "branch": "ahmad",
-                                  "ra": true,
-                                  "children": []
-                                },
-                                {
-                                  "id": "n1007_fhv",
-                                  "name": "sAHIBZADA mUHAMMAD KASHIF SAHIB",
-                                  "nameAr": "",
-                                  "notes": "",
-                                  "nasl": 9,
-                                  "branch": "ahmad",
-                                  "ra": true,
-                                  "children": []
-                                },
-                                {
-                                  "id": "n1008_qs1",
-                                  "name": "sAHIBZADA mUHAMMAD UMAR SIRAJ SAHIB",
-                                  "nameAr": "",
-                                  "notes": "",
-                                  "nasl": 9,
-                                  "branch": "ahmad",
-                                  "ra": true,
-                                  "children": []
-                                },
-                                {
-                                  "id": "n1009_pux",
-                                  "name": "sAHIBZADA rAZA sIRAJ SAHIB",
-                                  "nameAr": "",
+                                  "id": "n1011_shy",
+                                  "name": "sAHIBZADA hAMMAD ALI SAHIB",
+                                  "nameAr": "صاحبزادہ حماد علی صاحب",
                                   "notes": "",
                                   "nasl": 9,
                                   "branch": "ahmad",
@@ -3172,35 +3311,65 @@
                               ]
                             },
                             {
-                              "id": "n1027_ja5",
-                              "name": "Mian Mehmood Akbar saheb",
-                              "nameAr": "میاں محمود اکبر صاحب",
+                              "id": "n1007_fhv",
+                              "name": "sAHIBZADA mUHAMMAD KASHIF SAHIB",
+                              "nameAr": "صاحبزادہ محمد KASHIF صاحب",
                               "notes": "",
                               "nasl": 8,
                               "branch": "ahmad",
                               "ra": true,
-                              "children": [
-                                {
-                                  "id": "n1028_41x",
-                                  "name": "Mian Tahir mehmood saheb",
-                                  "nameAr": "میاں طاہر محمود صاحب",
-                                  "notes": "",
-                                  "nasl": 9,
-                                  "branch": "ahmad",
-                                  "ra": true,
-                                  "children": []
-                                },
-                                {
-                                  "id": "n1029_4mg",
-                                  "name": "Mian fakhar mehmood saheb",
-                                  "nameAr": "میاں فخر محمود صاحب",
-                                  "notes": "",
-                                  "nasl": 9,
-                                  "branch": "ahmad",
-                                  "ra": false,
-                                  "children": []
-                                }
-                              ]
+                              "children": []
+                            },
+                            {
+                              "id": "n1008_qs1",
+                              "name": "sAHIBZADA mUHAMMAD UMAR SIRAJ SAHIB",
+                              "nameAr": "صاحبزادہ محمد عمر سراج صاحب",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "ahmad",
+                              "ra": true,
+                              "children": []
+                            },
+                            {
+                              "id": "n1009_pux",
+                              "name": "sAHIBZADA rAZA sIRAJ SAHIB",
+                              "nameAr": "صاحبزادہ rAZA سراج صاحب",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "ahmad",
+                              "ra": true,
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "id": "n1027_ja5",
+                          "name": "Mian Mehmood Akbar saheb",
+                          "nameAr": "میاں محمود اکبر صاحب",
+                          "notes": "",
+                          "nasl": 7,
+                          "branch": "ahmad",
+                          "ra": true,
+                          "children": [
+                            {
+                              "id": "n1028_41x",
+                              "name": "Mian Tahir mehmood saheb",
+                              "nameAr": "میاں طاہر محمود صاحب",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "ahmad",
+                              "ra": true,
+                              "children": []
+                            },
+                            {
+                              "id": "n1029_4mg",
+                              "name": "Mian fakhar mehmood saheb",
+                              "nameAr": "میاں فخر محمود صاحب",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "ahmad",
+                              "ra": false,
+                              "children": []
                             }
                           ]
                         }
@@ -3343,7 +3512,7 @@
                             {
                               "id": "n1001_ht6",
                               "name": "SAhibzada Fakhar E Noor",
-                              "nameAr": "",
+                              "nameAr": "صاحبزادہ فخر E نور",
                               "notes": "",
                               "nasl": 8,
                               "branch": "ahmad",
@@ -3353,7 +3522,7 @@
                             {
                               "id": "n1002_4f9",
                               "name": "sAHIBZADA HAMZA FAISAL SAHIB",
-                              "nameAr": "",
+                              "nameAr": "صاحبزادہ حمزہ فیصل صاحب",
                               "notes": "",
                               "nasl": 8,
                               "branch": "ahmad",
@@ -3374,7 +3543,7 @@
                             {
                               "id": "n1003_nit",
                               "name": "sAHIBZADA mUHAMMAD AHMAD",
-                              "nameAr": "",
+                              "nameAr": "صاحبزادہ محمد احمد",
                               "notes": "",
                               "nasl": 8,
                               "branch": "ahmad",
@@ -3384,7 +3553,7 @@
                             {
                               "id": "n1004_0c2",
                               "name": "SAHIBZADA hAIDAR HASSAN SAHIB",
-                              "nameAr": "",
+                              "nameAr": "صاحبزادہ hAIDAR حسن صاحب",
                               "notes": "",
                               "nasl": 8,
                               "branch": "ahmad",
