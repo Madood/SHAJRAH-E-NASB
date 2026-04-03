@@ -2,7 +2,7 @@
 // SHAJRA APP — Root App Component
 // ═══════════════════════════════════════════════
 
-import React, { useState, useRef, useCallback, useEffect, useMemo } from 'react'
+import React, { useState, useRef, useCallback, useEffect } from 'react'
 import styles from './styles/App.module.css'
 
 import Header      from './components/Header'
@@ -38,6 +38,7 @@ export default function App() {
 
   const {
     tree, expanded, editMode, search, ready, searchHits, saveMode,
+    searchIndex, setSearchIndex, searchHitArray,
     toggleNode, expandAll, collapseAll,
     addChildNode, editNode, deleteNode, resetTree,
     setEditMode, setSearch,
@@ -46,7 +47,7 @@ export default function App() {
   // ── Pan / zoom ──
   const {
     setContainerRef, wrapperRef, scale, offset, percent,
-    handlers, zoomIn, zoomOut, resetView, panToNode, zoomAndPanToNode,
+    handlers, zoomIn, zoomOut, resetView, panToNode, zoomAndPanToNode, navigateToNode,
   } = usePanZoom()
 
   // ── Admin auth ──
@@ -145,30 +146,29 @@ export default function App() {
   }, [setSearch, bumpKey])
 
   // ── Match navigation ──
-  const matchIds = useMemo(() => [...searchHits], [search, tree])
-  const [currentMatchIndex, setCurrentMatchIndex] = useState(0)
+  // Navigate to a match by index: find the DOM node and animate to it
+  const navigateToMatch = useCallback((index) => {
+    const id = searchHitArray[index]
+    if (!id) return
+    const el = treePanelRef.current?.querySelector(`[data-node-id="${id}"]`)
+    if (el) navigateToNode(el)
+  }, [searchHitArray, navigateToNode])
 
-  useEffect(() => { setCurrentMatchIndex(0) }, [search])
-
-  // Pan tree panel to center the active search match
+  // Animate to current match after search changes or index steps
   useEffect(() => {
-    if (!matchIds.length) return
-    const activeId = matchIds[currentMatchIndex]
-    if (!activeId) return
-    const t = setTimeout(() => {
-      const el = document.querySelector(`[data-node-id="${activeId}"]`)
-      if (el) zoomAndPanToNode(el)
-    }, 250)
+    if (!searchHitArray.length) return
+    const t = setTimeout(() => navigateToMatch(searchIndex), 150)
     return () => clearTimeout(t)
-  }, [matchIds, currentMatchIndex, zoomAndPanToNode])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search, searchIndex])
 
   const handleNextMatch = useCallback(() => {
-    setCurrentMatchIndex((i) => (i + 1) % matchIds.length)
-  }, [matchIds.length])
+    setSearchIndex((i) => (i + 1) % searchHitArray.length)
+  }, [searchHitArray.length, setSearchIndex])
 
   const handlePrevMatch = useCallback(() => {
-    setCurrentMatchIndex((i) => (i - 1 + matchIds.length) % matchIds.length)
-  }, [matchIds.length])
+    setSearchIndex((i) => (i - 1 + searchHitArray.length) % searchHitArray.length)
+  }, [searchHitArray.length, setSearchIndex])
 
   // ── Export JSON ──
   const handleExport = useCallback(() => {
@@ -224,24 +224,24 @@ export default function App() {
       {/* ── Search navigation bar ── */}
       {searchActive && (
         <div className={styles.searchNav}>
-          {matchIds.length > 0 ? (
+          {searchHitArray.length > 0 ? (
             <>
               <button
                 className={styles.navArrow}
                 onClick={handlePrevMatch}
-                disabled={matchIds.length <= 1}
+                disabled={searchHitArray.length <= 1}
                 title="Previous match"
               >‹</button>
               <span className={styles.navCount}>
-                <span className={styles.navCurrent}>{currentMatchIndex + 1}</span>
+                <span className={styles.navCurrent}>{searchIndex + 1}</span>
                 <span className={styles.navSep}> of </span>
-                <span className={styles.navTotal}>{matchIds.length}</span>
+                <span className={styles.navTotal}>{searchHitArray.length}</span>
                 <span className={styles.navLabel}> found</span>
               </span>
               <button
                 className={styles.navArrow}
                 onClick={handleNextMatch}
-                disabled={matchIds.length <= 1}
+                disabled={searchHitArray.length <= 1}
                 title="Next match"
               >›</button>
             </>
@@ -295,7 +295,7 @@ export default function App() {
                     searchHits={searchHits}
                     searchActive={searchActive}
                     search={search}
-                    activeMatchId={matchIds[currentMatchIndex] || null}
+                    activeMatchId={searchHitArray[searchIndex] || null}
                     onToggle={handleToggle}
                     onAdd={openAdd}
                     onEdit={openEdit}

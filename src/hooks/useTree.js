@@ -238,13 +238,20 @@ export function useTree() {
   const [tree,     setTree]     = useState(null)
   const [expanded, setExpanded] = useState(new Set())
   const [editMode, setEditMode] = useState(false)
-  const [search,   setSearch]   = useState('')
-  const [ready,    setReady]    = useState(false)
+  const [search,      setSearch]      = useState('')
+  const [searchIndex, setSearchIndex] = useState(0)
+  const [ready,       setReady]       = useState(false)
 
   // ── Load ──
   useEffect(() => {
     const saved = load()
-    const data  = _patchNameAr(saved || INITIAL_DATA)
+    // If the bundled data has a newer version than what's cached, discard the cache
+    const bundledVersion = INITIAL_DATA.dataVersion
+    const cachedVersion  = saved?.dataVersion
+    const fresh = (!saved || (bundledVersion && cachedVersion !== bundledVersion))
+      ? INITIAL_DATA
+      : saved
+    const data = _patchNameAr(fresh)
     setTree(data)
     setExpanded(getIdsUpToNasl(data, 2))
     setReady(true)
@@ -304,15 +311,26 @@ export function useTree() {
     ? searchNodes(tree, search)
     : new Set()
 
-  // Auto-expand ancestors of search matches
+  const searchHitArray = [...searchHits]
+
+  // Reset to first result on new search query
   useEffect(() => {
     if (!search.trim() || !tree || searchHits.size === 0) return
-    const ancestors = findAncestors(tree, searchHits)
-    setExpanded((prev) => new Set([...prev, ...ancestors]))
+    setSearchIndex(0)
   }, [search])
+
+  // Expand ancestors of the CURRENT match only (not all matches at once)
+  useEffect(() => {
+    if (!search.trim() || !tree || searchHitArray.length === 0) return
+    const currentId  = searchHitArray[searchIndex] || searchHitArray[0]
+    const currentSet = new Set([currentId])
+    const ancestors  = findAncestors(tree, currentSet)
+    setExpanded((prev) => new Set([...prev, ...ancestors]))
+  }, [searchIndex, search])
 
   return {
     tree, expanded, editMode, search, ready, searchHits, saveMode,
+    searchIndex, setSearchIndex, searchHitArray,
     toggleNode, expandAll, collapseAll,
     addChildNode, editNode, deleteNode, resetTree,
     setEditMode, setSearch,

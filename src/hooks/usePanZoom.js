@@ -195,6 +195,46 @@ export function usePanZoom() {
     setOffset(prev => ({ x: prev.x + dx, y: prev.y + dy }))
   }, [])
 
+  // ── Smooth animated navigate to a DOM element (zoom + pan) ──
+  const navigateToNode = useCallback((el) => {
+    const container = containerRef.current
+    const wrapper   = wrapperRef.current
+    if (!container || !wrapper || !el) return
+
+    const m = (wrapper.style.transform || '').match(/scale\(([^)]+)\)/)
+    const currentScale = m ? parseFloat(m[1]) : 1
+    if (!(currentScale > 0)) return
+
+    const cRect = container.getBoundingClientRect()
+    const eRect = el.getBoundingClientRect()
+    const wRect = wrapper.getBoundingClientRect()
+    if (!eRect.width && !eRect.height) return
+
+    const px = (eRect.left + eRect.width  / 2 - wRect.left) / currentScale
+    const py = (eRect.top  + eRect.height / 2 - wRect.top)  / currentScale
+
+    const targetScale = Math.min(0.9, Math.max(currentScale, 0.5))
+    const targetX = cRect.width  / 2 - px * targetScale
+    const targetY = cRect.height / 2 - py * targetScale
+
+    const startScale = currentScale
+    const startX     = offset.x
+    const startY     = offset.y
+    const duration   = 420
+    const start      = performance.now()
+
+    const easeInOut = (t) => t < 0.5 ? 2*t*t : -1+(4-2*t)*t
+
+    const animate = (now) => {
+      const t = Math.min((now - start) / duration, 1)
+      const e = easeInOut(t)
+      setScale(startScale + (targetScale - startScale) * e)
+      setOffset({ x: startX + (targetX - startX) * e, y: startY + (targetY - startY) * e })
+      if (t < 1) requestAnimationFrame(animate)
+    }
+    requestAnimationFrame(animate)
+  }, [offset])
+
   // ── Zoom + pan to center a DOM element at a minimum readable scale ──
   const zoomAndPanToNode = useCallback((el, targetScale = 0.72) => {
     const container = containerRef.current
@@ -241,5 +281,6 @@ export function usePanZoom() {
     resetView,
     panToNode,
     zoomAndPanToNode,
+    navigateToNode,
   }
 }
