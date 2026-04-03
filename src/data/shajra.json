@@ -1201,7 +1201,18 @@
                                   "nasl": 9,
                                   "branch": "ahmad",
                                   "ra": false,
-                                  "children": []
+                                  "children": [
+                                    {
+                                      "id": "n1007_s6i",
+                                      "name": "Muhammad Shamael sahib",
+                                      "nameAr": "محمد شمائل صاحب",
+                                      "notes": "",
+                                      "nasl": 10,
+                                      "branch": "ahmad",
+                                      "ra": true,
+                                      "children": []
+                                    }
+                                  ]
                                 },
                                 {
                                   "id": "n1040_xgf",
@@ -1211,7 +1222,18 @@
                                   "nasl": 9,
                                   "branch": "ahmad",
                                   "ra": false,
-                                  "children": []
+                                  "children": [
+                                    {
+                                      "id": "n1006_2qk",
+                                      "name": "Muhammad Mouqeet sahib",
+                                      "nameAr": "محمد مقیت صاحب",
+                                      "notes": "",
+                                      "nasl": 10,
+                                      "branch": "ahmad",
+                                      "ra": true,
+                                      "children": []
+                                    }
+                                  ]
                                 },
                                 {
                                   "id": "n1106_d6n",
@@ -1221,7 +1243,28 @@
                                   "nasl": 9,
                                   "branch": "ahmad",
                                   "ra": true,
-                                  "children": []
+                                  "children": [
+                                    {
+                                      "id": "n1004_0pc",
+                                      "name": "Muhammd Bilal",
+                                      "nameAr": "محمد بلال صاحب",
+                                      "notes": "",
+                                      "nasl": 10,
+                                      "branch": "ahmad",
+                                      "ra": true,
+                                      "children": []
+                                    },
+                                    {
+                                      "id": "n1005_2ka",
+                                      "name": "Muhammad Umar sahib",
+                                      "nameAr": "محمد عمر صاحب",
+                                      "notes": "",
+                                      "nasl": 10,
+                                      "branch": "ahmad",
+                                      "ra": true,
+                                      "children": []
+                                    }
+                                  ]
                                 }
                               ]
                             },
@@ -3359,7 +3402,28 @@
                               "nasl": 8,
                               "branch": "ahmad",
                               "ra": true,
-                              "children": []
+                              "children": [
+                                {
+                                  "id": "n1001_ve3",
+                                  "name": "Muhammad Azlan faReed",
+                                  "nameAr": "محمد اذلان فرید",
+                                  "notes": "",
+                                  "nasl": 9,
+                                  "branch": "ahmad",
+                                  "ra": true,
+                                  "children": []
+                                },
+                                {
+                                  "id": "n1002_g2f",
+                                  "name": "Muhammad Rohan fareed",
+                                  "nameAr": "محمد روحان فرید",
+                                  "notes": "",
+                                  "nasl": 9,
+                                  "branch": "ahmad",
+                                  "ra": true,
+                                  "children": []
+                                }
+                              ]
                             },
                             {
                               "id": "n1029_4mg",
@@ -3369,7 +3433,18 @@
                               "nasl": 8,
                               "branch": "ahmad",
                               "ra": false,
-                              "children": []
+                              "children": [
+                                {
+                                  "id": "n1003_cwc",
+                                  "name": "Muhammad Abdul ahad",
+                                  "nameAr": "محمد عبدالاحد",
+                                  "notes": "",
+                                  "nasl": 9,
+                                  "branch": "ahmad",
+                                  "ra": true,
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         }
