@@ -1985,7 +1985,28 @@
                                   "nasl": 9,
                                   "branch": "ahmad",
                                   "ra": true,
-                                  "children": []
+                                  "children": [
+                                    {
+                                      "id": "n1001_o07",
+                                      "name": "Muhammad suleiman Noor",
+                                      "nameAr": "محمد سلیمان نور",
+                                      "notes": "",
+                                      "nasl": 10,
+                                      "branch": "ahmad",
+                                      "ra": true,
+                                      "children": []
+                                    },
+                                    {
+                                      "id": "n1002_e8r",
+                                      "name": "Muhammad Daud  Noor",
+                                      "nameAr": "محمد داؤد نور",
+                                      "notes": "",
+                                      "nasl": 10,
+                                      "branch": "ahmad",
+                                      "ra": true,
+                                      "children": []
+                                    }
+                                  ]
                                 }
                               ]
                             }
@@ -2529,7 +2550,38 @@
                                       "nasl": 10,
                                       "branch": "ahmad",
                                       "ra": true,
-                                      "children": []
+                                      "children": [
+                                        {
+                                          "id": "n1003_v7s",
+                                          "name": "Muhammad tayyab ",
+                                          "nameAr": "محمد طیب",
+                                          "notes": "",
+                                          "nasl": 11,
+                                          "branch": "ahmad",
+                                          "ra": true,
+                                          "children": []
+                                        },
+                                        {
+                                          "id": "n1004_4vy",
+                                          "name": "Muhammad taimoor",
+                                          "nameAr": "محمد تیمور",
+                                          "notes": "",
+                                          "nasl": 11,
+                                          "branch": "ahmad",
+                                          "ra": true,
+                                          "children": []
+                                        },
+                                        {
+                                          "id": "n1005_ptu",
+                                          "name": "Muhammad hashaam",
+                                          "nameAr": "محمد ہشام",
+                                          "notes": "",
+                                          "nasl": 11,
+                                          "branch": "ahmad",
+                                          "ra": true,
+                                          "children": []
+                                        }
+                                      ]
                                     },
                                     {
                                       "id": "n1044_wmr",
@@ -2539,7 +2591,28 @@
                                       "nasl": 10,
                                       "branch": "ahmad",
                                       "ra": true,
-                                      "children": []
+                                      "children": [
+                                        {
+                                          "id": "n1006_nr8",
+                                          "name": "Muhammad Affan ",
+                                          "nameAr": "محمد عفان",
+                                          "notes": "",
+                                          "nasl": 11,
+                                          "branch": "ahmad",
+                                          "ra": true,
+                                          "children": []
+                                        },
+                                        {
+                                          "id": "n1007_09h",
+                                          "name": "Muhammad faizan",
+                                          "nameAr": "محمد فیضان",
+                                          "notes": "",
+                                          "nasl": 11,
+                                          "branch": "ahmad",
+                                          "ra": true,
+                                          "children": []
+                                        }
+                                      ]
                                     }
                                   ]
                                 },
@@ -2613,7 +2686,18 @@
                                       "nasl": 10,
                                       "branch": "ahmad",
                                       "ra": true,
-                                      "children": []
+                                      "children": [
+                                        {
+                                          "id": "n1001_e51",
+                                          "name": "Sahibzada Muhammad Wa'ail",
+                                          "nameAr": "صاحبزادہ محمد وائل",
+                                          "notes": "",
+                                          "nasl": 11,
+                                          "branch": "ahmad",
+                                          "ra": true,
+                                          "children": []
+                                        }
+                                      ]
                                     }
                                   ]
                                 },
@@ -3248,7 +3332,28 @@
                           "nasl": 7,
                           "branch": "ahmad",
                           "ra": true,
-                          "children": []
+                          "children": [
+                            {
+                              "id": "n1003_cqs",
+                              "name": "Sahibzada Muhammad Rayyan",
+                              "nameAr": "صاحبزادہ محمد ریان",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "ahmad",
+                              "ra": true,
+                              "children": []
+                            },
+                            {
+                              "id": "n1004_bdn",
+                              "name": "Sahibzada Muhammad Saad ud deen",
+                              "nameAr": "محمد سعد الدین",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "ahmad",
+                              "ra": true,
+                              "children": []
+                            }
+                          ]
                         },
                         {
                           "id": "n1017_u9w",
@@ -3258,7 +3363,18 @@
                           "nasl": 7,
                           "branch": "ahmad",
                           "ra": true,
-                          "children": []
+                          "children": [
+                            {
+                              "id": "n1002_ud4",
+                              "name": "Sahibzada Taha Faiz",
+                              "nameAr": "صاحبزادہ طہٰ فیض",
+                              "notes": "",
+                              "nasl": 8,
+                              "branch": "ahmad",
+                              "ra": true,
+                              "children": []
+                            }
+                          ]
                         }
                       ]
                     },
