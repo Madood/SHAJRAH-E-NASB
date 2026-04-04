@@ -244,7 +244,7 @@ export function useTree() {
 
   // ── Load ──
   useEffect(() => {
-    fetch('/shajra-data.json')
+    fetch('/shajra-data.json?v=' + Date.now())
       .then(r => r.json())
       .then(fetched => {
         setInitialData(fetched)
