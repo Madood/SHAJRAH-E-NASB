@@ -17,9 +17,8 @@ const saveTreePlugin = () => ({
       req.on('end', () => {
         try {
           JSON.parse(body)
-          // File-write disabled to prevent overwriting curated data
-          // const filePath = path.resolve(process.cwd(), 'src/data/shajra.json')
-          // fs.writeFileSync(filePath, JSON.stringify(JSON.parse(body), null, 2), 'utf-8')
+          const filePath = path.resolve(process.cwd(), 'public/shajra-data.json')
+          fs.writeFileSync(filePath, JSON.stringify(JSON.parse(body), null, 2), 'utf-8')
           res.setHeader('Content-Type', 'application/json')
           res.end(JSON.stringify({ ok: true }))
         } catch (e) {

@@ -8,7 +8,6 @@ import {
   getAllIds, getIdsUpToNasl, generateId, searchNodes, findAncestors,
 } from '../utils/treeOps'
 import { useStorage } from './useStorage'
-import INITIAL_DATA from '../data/shajra.json'
 
 // ── Urdu name patch (fills missing nameAr on load) ──────────────────────────
 const _W = {
@@ -235,26 +234,32 @@ function _patchNameAr(node) {
 export function useTree() {
   const { save, load, clear, saveMode } = useStorage()
 
-  const [tree,     setTree]     = useState(null)
-  const [expanded, setExpanded] = useState(new Set())
-  const [editMode, setEditMode] = useState(false)
+  const [tree,        setTree]        = useState(null)
+  const [expanded,    setExpanded]    = useState(new Set())
+  const [editMode,    setEditMode]    = useState(false)
   const [search,      setSearch]      = useState('')
   const [searchIndex, setSearchIndex] = useState(0)
   const [ready,       setReady]       = useState(false)
+  const [initialData, setInitialData] = useState(null)
 
   // ── Load ──
   useEffect(() => {
-    const saved = load()
-    // If the bundled data has a newer version than what's cached, discard the cache
-    const bundledVersion = INITIAL_DATA.dataVersion
-    const cachedVersion  = saved?.dataVersion
-    const fresh = (!saved || (bundledVersion && cachedVersion !== bundledVersion))
-      ? INITIAL_DATA
-      : saved
-    const data = _patchNameAr(fresh)
-    setTree(data)
-    setExpanded(getIdsUpToNasl(data, 2))
-    setReady(true)
+    fetch('/shajra-data.json')
+      .then(r => r.json())
+      .then(fetched => {
+        setInitialData(fetched)
+        const saved = load()
+        // If the fetched data has a newer version than what's cached, discard the cache
+        const bundledVersion = fetched.dataVersion
+        const cachedVersion  = saved?.dataVersion
+        const fresh = (!saved || (bundledVersion && cachedVersion !== bundledVersion))
+          ? fetched
+          : saved
+        const data = _patchNameAr(fresh)
+        setTree(data)
+        setExpanded(getIdsUpToNasl(data, 2))
+        setReady(true)
+      })
   }, [])
 
   // ── Auto-save on tree change ──
@@ -301,10 +306,11 @@ export function useTree() {
   }, [])
 
   const resetTree = useCallback(() => {
+    if (!initialData) return
     clear()
-    setTree(INITIAL_DATA)
-    setExpanded(getIdsUpToNasl(INITIAL_DATA, 2))
-  }, [])
+    setTree(initialData)
+    setExpanded(getIdsUpToNasl(initialData, 2))
+  }, [initialData])
 
   // ── Search ──
   const searchHits = search.trim() && tree
